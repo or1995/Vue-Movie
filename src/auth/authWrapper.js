@@ -30,8 +30,7 @@ async function handleRedirectCallback() {
 
   try {
     await client.handleRedirectCallback()
-    state.user = await client.getUser()
-    state.isAuthenticated = true
+    state.user = await client.loginWithRedirectue
   } catch (e) {
     state.error = e
   } finally {
@@ -105,7 +104,6 @@ export const setupAuth = async (options, callbackRedirect) => {
 
   try {
     // If the user is returning to the app after authentication
-    
 
     if (
       window.location.search.includes('code=') &&
@@ -119,6 +117,7 @@ export const setupAuth = async (options, callbackRedirect) => {
       callbackRedirect(appState)
     }
   } catch (e) {
+      console.log(e);
     state.error = e
   } finally {
     // Initialize our internal authentication state

@@ -1,24 +1,12 @@
 <template>
-  <form class="login" @submit.prevent> 
-      <h1>{{$auth.isAuthenticated.value}}</h1>
-      <button v-if="!$auth.isAuthenticated.value" @click="login">login</button>
-      <button v-else @click="logout">logout</button>
-  </form>
+  <h1>loading</h1>
 </template>
 
 <script>
 export default {
-    methods: {
-        login() {
+    beforeMount() {
         this.$auth.loginWithRedirect();
-        },
-        // Log the user out
-        logout() {
-        this.$auth.logout({
-            returnTo: window.location.origin
-        });
-        }
-  }
+    }
 }
 </script>
 
