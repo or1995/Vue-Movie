@@ -5,6 +5,7 @@
             <router-link to="/">Home</router-link>
             <router-link to="/genres">Genres</router-link>
             <router-link to="/movies">All Movies</router-link>
+            <router-link to="/auth">Auth</router-link>
             <div></div>
         </div>
     </div>

@@ -1,0 +1,6 @@
+
+{
+    "domain": "dev-kk4nxepd.us.auth0.com",
+    "client_id": "RYOToVpksXVOeZX79a5flTabVlTUZLol",
+    "redirect_uri": "http://localhost:8080/auth"
+}
