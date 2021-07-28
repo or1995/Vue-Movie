@@ -98,9 +98,11 @@ export const routeGuard = (to, from, next) => {
 }
 
 export const setupAuth = async (options, callbackRedirect) => {
+    console.log('11111111111111111')
   client = await createAuth0Client({
     ...options,
   })
+  console.log('22222222222222')
 
   try {
     // If the user is returning to the app after authentication
@@ -117,14 +119,17 @@ export const setupAuth = async (options, callbackRedirect) => {
       callbackRedirect(appState)
     }
   } catch (e) {
-      console.log(e);
+      console.log(e,'hghjghjghj');
     state.error = e
   } finally {
     // Initialize our internal authentication state
     state.isAuthenticated = await client.isAuthenticated()
     state.user = await client.getUser()
     state.loading = false
+    console.log('gjjggggghjghjghjghj')
   }
+
+  console.log('hello')
 
   return {
     install: (app) => {
