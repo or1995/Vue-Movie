@@ -2,7 +2,9 @@
     <div class="head">
         <div class="logo">Movies</div>
         <div>
-            <router-link to="/">some link</router-link>
+            <router-link to="/">Home</router-link>
+            <router-link to="/genres">Genres</router-link>
+            <router-link to="/movies">All Movies</router-link>
             <div></div>
         </div>
     </div>

@@ -1,12 +1,19 @@
 <template>
     <div class="home">
-    <h2>All Movies</h2>
-    <div class="allmovies" v-if="popularMovies">
-        <router-link v-for="movie in popularMovies" :to="'/movie/' + movie.id" :key="movie.id" class="movie">
-            <img :src="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"/>
-            <h2>{{movie.original_title}}</h2>
-        </router-link>
-    </div>
+        <h2>Top Rated Movies</h2>
+        <div class="allmovies" v-if="topRatedMovies">
+            <router-link v-for="movie in topRatedMovies" :to="'/movie/' + movie.id" :key="movie.id" class="movie">
+                <img :src="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"/>
+                <h2>{{movie.original_title}}</h2>
+            </router-link>
+        </div>
+        <h2>Popular Movies</h2>
+        <div class="allmovies" v-if="popularMovies">
+            <router-link v-for="movie in popularMovies" :to="'/movie/' + movie.id" :key="movie.id" class="movie">
+                <img :src="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"/>
+                <h2>{{movie.original_title}}</h2>
+            </router-link>
+        </div>
     </div>
 </template>
 
@@ -26,10 +33,19 @@ export default {
             }
             console.log(arr);
             return arr;
-        }
+        },
+        topRatedMovies() {
+            const arr = []
+            for(let key in Object.entries(this.$store.getters.getTopRatedMovies)) {
+                arr.push(this.$store.getters.getTopRatedMovies[key])
+            }
+            console.log(arr);
+            return arr;
+        },
     },
     created() {
         this.$store.dispatch('fetchPopularMovies');
+        this.$store.dispatch('fetchTopRatedMovies');
     }
 }
 </script>
