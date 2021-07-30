@@ -13,6 +13,12 @@ export default {
             context.commit('topRatedMovies', {movies: res.data});
         })
     },
+    fetchUpcomingMovies(context) {
+        axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=235a4bcbe153b255ef99c278bddd6dd5')
+        .then(res => {
+            context.commit('upcomingMovies', {movies: res.data});
+        })
+    },
     fetchGenres(context) {
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=235a4bcbe153b255ef99c278bddd6dd5`)
         .then(res => {

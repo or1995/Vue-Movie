@@ -5,6 +5,10 @@ export default {
     topRatedMovies(state, payload) {
         state.topRatedMovies = payload.movies.results;
     },
+    upcomingMovies(state, payload) {
+        console.log('mut',payload.movies)
+        state.upcomingMovies = payload.movies.results;
+    },
     currentMovie(state, payload) {
         state.currentMovie = payload.movie;
     },

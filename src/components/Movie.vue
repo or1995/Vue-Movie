@@ -1,6 +1,7 @@
 <template>
     <div class="movie">
-        <div v-if="movie" class="backdropdiv" :style="{backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')`}">
+        <div v-if="movie" class="backdropdiv" :style="{background: `linear-gradient(180deg, rgba(27,28,29,0) 0%, rgba(27,28,29,1) 100%), url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')`}">
+            <div>{{$auth.isAuthenticated.value}}</div>
         </div>
     </div>    
 </template>
@@ -28,8 +29,11 @@ export default {
 
     .backdropdiv {
         position: absolute;
-        top: 0;
+        top: 5rem;
         left: 0;
+        width: 100vw;
+        height: 50rem;
+        background-size: cover !important;
     }
 
 </style>

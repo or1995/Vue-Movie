@@ -5,6 +5,9 @@ const getters =  {
     getTopRatedMovies(state) {
         return state.topRatedMovies
     },
+    getUpcomingMovies(state) {
+        return state.upcomingMovies
+    },
     getCurrentMovie(state) {
         return state.currentMovie
     },

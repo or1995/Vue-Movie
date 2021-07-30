@@ -7,6 +7,7 @@ export default {
         return {
             popularMovies: [],
             topRatedMovies: [],
+            upcomingMovies: [],
             currentMovie: [],
             genres: []
         }

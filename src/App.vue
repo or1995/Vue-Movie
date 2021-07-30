@@ -1,7 +1,9 @@
 <template>
   <Header/>
-  <router-view>
-  </router-view>
+  <div class="main-container">
+    <router-view>
+    </router-view>
+  </div>
 </template>
 
 <script>
@@ -25,17 +27,36 @@ export default {
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); /* 'Exo', sans-serif;*/
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); /* 'Pacifico', cursive; */
+
+  :root {
+    --back-color: #fff;
+    --back-darker-color: #F0F2F0;
+    --font-light-color: #fff;
+    --grey: #10151d;
+    --font-dark-color: #000;
+    --brand-color: #3a7bd5;
+    --brand-back-color: #eaf1fa;
+    --main-font: 'Exo', sans-serif;
+    --logo-font: 'Pacifico', cursive; 
+  }
 
   * {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--main-font);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #fff;
+    color: var(--font-dark-color);
   }
 
   body {
-    background-color: #1b1c1d;
+    background-color: var(--back-color);
+    overflow-x: hidden;
+  }
+
+  .main-container {
+    width: 100%;
+    padding: 4rem 10rem;
   }
 </style>

@@ -14,9 +14,9 @@ export default createRouter({
         {path: '/', props: true, component: Home, beforeEnter: routeGuard},
         {path: '/login', props: true, component: Login},
         {path: '/logout', props: true, component: Logout},
-        {path: '/auth', props: true, component: AuthBack},
-        {path: '/movie/:movieId', props: true, component: Movie},
-        {path: '/genres', props: true, component: Genres}
+        {path: '/auth', props: true, component: AuthBack, beforeEnter: routeGuard},
+        {path: '/movie/:movieId', props: true, component: Movie, beforeEnter: routeGuard},
+        {path: '/genres', props: true, component: Genres, beforeEnter: routeGuard}
     ]
 })
 

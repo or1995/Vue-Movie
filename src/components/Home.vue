@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <carousel/>
         <h2>Top Rated Movies</h2>
         <div class="allmovies" v-if="topRatedMovies">
             <router-link v-for="movie in topRatedMovies" :to="'/movie/' + movie.id" :key="movie.id" class="movie">
@@ -18,8 +19,11 @@
 </template>
 
 <script>
-
+import Carousel from './Carousel.vue'; 
 export default {
+    components: {
+        Carousel
+    },
     data() {
         return {
 
@@ -53,7 +57,6 @@ export default {
 <style scoped>
     .home {
         width: 100%;
-        padding: 6rem 4rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -68,7 +71,7 @@ export default {
         font-weight: 300;
     }
     .allmovies {
-        width: 90%;
+        width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         color: #fff;
