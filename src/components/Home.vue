@@ -80,6 +80,10 @@ export default {
 
     .movie {
         position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+        height: 37.5rem;
+        width: 25rem
     }
 
     .movie h2 {

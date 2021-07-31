@@ -4,6 +4,7 @@
           <img class="backdrop" :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`"/>
           <div class="text">
             <h2>{{movie.original_title}}</h2>
+            <span>{{movie.release_date}}</span>
             <p>{{movie.overview}}</p>
             <button>More Info</button>
           </div>
@@ -27,6 +28,13 @@ export default {
     },
     created() {
         this.$store.dispatch('fetchUpcomingMovies');
+        setInterval(() => {
+            if(this.currentItem < 4) {
+                this.currentItem = this.currentItem + 1
+            } else {
+                this.currentItem = 0;
+            }
+        }, 5000);
 
     },
     computed: {
@@ -37,7 +45,7 @@ export default {
                 arr.push(this.$store.getters.getUpcomingMovies[key])
             }
             console.log(arr);
-            return arr.slice(0,3);
+            return arr.slice(0,4);
         },
     },
 }
@@ -78,6 +86,14 @@ export default {
         z-index: 1000;
     }
 
+    .active .right .posterdiv .poster {
+        animation: in 1.5s forwards;
+    }
+
+    .active .right .posterdiv .posterback {
+        animation: in 1.5s .5s forwards;
+    }
+
     .right {
         width: 30rem;
         display: flex;
@@ -101,6 +117,7 @@ export default {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         transform: rotate(5deg);
         transition: all .3s;
+        opacity: 0;
     }
 
     .posterdiv:hover .poster {
@@ -119,6 +136,7 @@ export default {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         transform: rotate(5deg);
         transition: all .3s;
+        opacity: 0;
     }
 
     .posterdiv:hover .posterback {
@@ -152,6 +170,12 @@ export default {
         font-size: 4rem;
     }
 
+    .text span {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        font-weight: 300;
+    }
+
     .text p {
         font-size: 1.5rem;
     }
@@ -168,4 +192,17 @@ export default {
     }
 
 
+</style>
+
+<style>
+    @keyframes in {
+        0% {
+            opacity: 0;
+            transform: translateY(3rem) rotate(5deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) rotate(5deg);
+        }
+    }
 </style>
