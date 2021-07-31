@@ -12,7 +12,14 @@
             <div class="posterdiv">
                 <div class="posterback"></div>
                 <img class="poster" :src="'https://image.tmdb.org/t/p/original/' + movie.poster_path"/>
+                <div class="prism"></div>
             </div>
+          </div>
+          <div class="controls">
+              <button @click="() => {changePage(0)}" :class="currentItem === 0 ? 'buttonactive' : null"></button>
+              <button @click="() => {changePage(1)}" :class="currentItem === 1 ? 'buttonactive' : null"></button>
+              <button @click="() => {changePage(2)}" :class="currentItem === 2 ? 'buttonactive' : null"></button>
+              <button @click="() => {changePage(3)}" :class="currentItem === 3 ? 'buttonactive' : null"></button>
           </div>
 
       </div>
@@ -24,12 +31,13 @@ export default {
     data() {
         return {
             currentItem: 0,
+            currentInterval: null
         }
     },
     created() {
         this.$store.dispatch('fetchUpcomingMovies');
-        setInterval(() => {
-            if(this.currentItem < 4) {
+        this.currentInterval = setInterval(() => {
+            if(this.currentItem < 3) {
                 this.currentItem = this.currentItem + 1
             } else {
                 this.currentItem = 0;
@@ -48,15 +56,29 @@ export default {
             return arr.slice(0,4);
         },
     },
+    methods: {
+        changePage(page) {
+            clearInterval(this.currentInterval);
+            this.currentItem = page;
+                    this.currentInterval = setInterval(() => {
+            if(this.currentItem < 3) {
+                this.currentItem = this.currentItem + 1
+            } else {
+                this.currentItem = 0;
+            }
+        }, 5000);
+        }
+    }
 }
 </script>
 
 <style scoped>
     .carousel {
-        position: relative;
-        width: 100vw;
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        width: 100%;
         height: 50rem;
-        margin-bottom: 4rem;
         overflow: hidden !important;
         display: grid;
         grid-template-rows: 1fr;
@@ -90,6 +112,10 @@ export default {
         animation: in 1.5s forwards;
     }
 
+    .active .right .posterdiv .prism {
+        animation: in 1.5s forwards;
+    }
+
     .active .right .posterdiv .posterback {
         animation: in 1.5s .5s forwards;
     }
@@ -120,7 +146,25 @@ export default {
         opacity: 0;
     }
 
+    .prism {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 25rem;
+        height: 37.5rem;
+        transform: rotate(5deg);
+        background: linear-gradient(270deg, rgba(52,143,80,0) 0%, rgba(0,0,0,0.2) 100%);
+        z-index: 10000;
+        transition: all .3s;
+    }
+
     .posterdiv:hover .poster {
+        margin-top: -.5rem;
+        margin-left: -.5rem;
+        transition: all .3s;
+    }
+
+    .posterdiv:hover .prism {
         margin-top: -.5rem;
         margin-left: -.5rem;
         transition: all .3s;
@@ -132,6 +176,7 @@ export default {
         left: 1rem;
         width: 25rem;
         height: 37.5rem;
+        border-radius: 4px;
         background-color: var(--brand-color);
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         transform: rotate(5deg);
@@ -189,6 +234,33 @@ export default {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         color: var(--font-light-color);
         cursor: pointer;
+    }
+
+    .controls {
+        position: absolute;
+        bottom: 3rem;
+        left: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        z-index: 1000;
+    }
+
+    .controls button {
+        border-radius: 50%;
+        height: 1rem;
+        width: 1rem;
+        border: 2px solid var(--brand-color);
+        outline: none;
+        background-color: #fff;
+        cursor: pointer;
+        transition: all .3s;
+    }
+
+    .buttonactive {
+        background-color: var(--brand-color) !important;
+        transition: all .3s;
     }
 
 

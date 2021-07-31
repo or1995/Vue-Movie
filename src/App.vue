@@ -52,7 +52,7 @@ export default {
 
   body {
     background-color: var(--back-color);
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
   }
 
   .main-container {
